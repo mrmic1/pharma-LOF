@@ -13,29 +13,6 @@ save_table_path = "./data/fish_size/tables/"
 fish_size = read.csv(paste0(data_path, "biometric_data.csv"))
 str(fish_size)
 
-## Size data ##
-fish_size %>% 
-  dplyr::group_by(Lake, Species, Treatment) %>% 
-  dplyr::summarise(mean_weight = mean(Weight),
-                   sd_weight = sd(Weight),
-                   mean_length = mean(Total_length),
-                   sd_length = sd(Total_length))
-
-ggplot(data = fish_size, aes(x = Species, y = Total_length, color = Treatment)) +
-  geom_boxplot() +
-  theme_bw()+
-  facet_wrap(~Lake)
-
-ggplot(data = subset(fish_size, Species == 'Roach'), aes(x = Total_length)) +
-  geom_histogram(binwidth = 1, fill = 'goldenrod', color = 'black') +
-  theme_bw()+
-  facet_wrap(~Lake)
-
-ggplot(data = subset(fish_size, Species == 'Perch'), aes(x = Total_length)) +
-  geom_histogram(binwidth = 1, fill = 'goldenrod', color = 'black') +
-  theme_bw()+
-  facet_wrap(~Lake)
-
 #fish size comparisons
 
 ## Muddyfoot ##
