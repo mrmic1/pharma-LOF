@@ -1,34 +1,37 @@
-library(tidyverse)
+#LIBRARIES
+library(dplyr)
 library(ggplot2)
 
-#Fish size data
+#data paths
+data_path = "./data/fish_size/"
+save_figure_path = "./data/fish_size/figures/" 
+save_table_path = "./data/fish_size/tables/" 
 
-setwd("/Users/marcusmichelangeli/Desktop/MICHELANGELI_2022_LOF")
+#----------------------------------------------------------------------------------------#
+#----------------------------------------------------------------------------------------#
 
-#set file path
-data_path = "./data/"
-
-tagsize = readxl::read_xlsx(paste0(data_path, "LOF_tag_size_data.xlsx"))
+fish_size = read.csv(paste0(data_path, "biometric_data.csv"))
+str(fish_size)
 
 ## Size data ##
-tagsize %>% 
+fish_size %>% 
   dplyr::group_by(Lake, Species, Treatment) %>% 
   dplyr::summarise(mean_weight = mean(Weight),
                    sd_weight = sd(Weight),
                    mean_length = mean(Total_length),
                    sd_length = sd(Total_length))
 
-ggplot(data = tagsize, aes(x = Species, y = Total_length, color = Treatment)) +
+ggplot(data = fish_size, aes(x = Species, y = Total_length, color = Treatment)) +
   geom_boxplot() +
   theme_bw()+
   facet_wrap(~Lake)
 
-ggplot(data = subset(tagsize, Species == 'Roach'), aes(x = Total_length)) +
+ggplot(data = subset(fish_size, Species == 'Roach'), aes(x = Total_length)) +
   geom_histogram(binwidth = 1, fill = 'goldenrod', color = 'black') +
   theme_bw()+
   facet_wrap(~Lake)
 
-ggplot(data = subset(tagsize, Species == 'Perch'), aes(x = Total_length)) +
+ggplot(data = subset(fish_size, Species == 'Perch'), aes(x = Total_length)) +
   geom_histogram(binwidth = 1, fill = 'goldenrod', color = 'black') +
   theme_bw()+
   facet_wrap(~Lake)
