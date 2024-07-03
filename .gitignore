@@ -15,6 +15,7 @@
 ./data/tracks_filtered/muddyfoot_sub.rds
 ./data/tracks_filtered/lake_BT_sub.rds
 ./data/telem_obj/pike_muddyfoot_tel.rds
+./r_scripts/telem_obj/lake_maps.R
 *.docx
 *.tiff
 *.ai
