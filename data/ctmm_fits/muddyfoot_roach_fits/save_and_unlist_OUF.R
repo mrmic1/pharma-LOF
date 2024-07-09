@@ -54,5 +54,4 @@ muddyfoot_roach_OUF_models <- lapply(muddyfoot_roach_ctmm_fits, function(x) x[['
 
 # Set the names of the new list to the identities of the original objects (if needed)
 names(muddyfoot_roach_OUF_models) <- names(muddyfoot_roach_ctmm_fits)
-
 saveRDS(muddyfoot_roach_OUF_models, paste0(save_ctmm_path, "muddyfoot_roach_OUF_models.rds"))
